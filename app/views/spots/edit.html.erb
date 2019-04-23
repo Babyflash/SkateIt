@@ -1,0 +1,8 @@
+<h3>Edit a spot</h3>
+<%= simple_form_for(@spot) do |f| %>
+     <%= f.input :spot_rating %>
+     <%= f.input :difficulty_rating %>
+     <%= f.input :default_image %>
+     <%= f.input :default_image_cache, as: :hidden %>
+     <%= f.button :submit %>
+<% end %>
