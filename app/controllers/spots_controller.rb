@@ -1,6 +1,14 @@
 class SpotsController < ApplicationController
     before_action 
-    # -- Read
+    
+    # --- Create
+    def new
+    end
+
+    def create
+    end
+    
+    # --- Read
     def index
         @spots = Spot.all
     end
