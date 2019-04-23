@@ -1,0 +1,268 @@
+$color_1:  #6226BA;
+$color_2:  #390C82;
+$color_3:  #E4E3E5;
+$color_4:  #ECDBFB;
+$color_5:  #F5868C;
+$color_6:  #37DCA2;
+
+$skate_width:    200px;
+$skate_heigth:   13px;
+$skate_wheel_size: 20px;
+
+$jump_duration:   1.4s;
+$jump_height:     100px;
+
+$obstacle_size:   $jump_height/2;
+
+.skate-animation-container {
+  // height: 200px;
+  background-color: $color_1;
+  height: 0;
+}
+
+.skate {
+  width: $skate_width;
+  animation: skateJumpAnimation $jump_duration linear infinite;
+
+  &-board {
+     width: 100%;
+     height: $skate_heigth;
+     background-color: $color_2;
+  }
+
+  &-wheels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    animation: wheelsJumpAnimation $jump_duration linear infinite;
+
+    div {
+      width: $skate_wheel_size;
+      height: $skate_wheel_size;
+      background-color: $color_3;
+      border-radius: 50%;
+
+      &:first-child {
+        margin-left: 20px;
+      }
+
+      &:last-child {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &-shadow {
+    width: $skate_width*0.9;
+    height: 10px;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    margin-top: -3px;
+    z-index: -1;
+    animation: shadowJumpAnimation $jump_duration linear infinite;
+  }
+
+  &-smoke {
+    width: $skate_width/2;
+    height: 30px;
+    position: absolute;
+    right: 100%;
+    overflow: hidden;
+
+    &_item {
+      background-color: $color_4;
+      border-radius: 50%;
+      background-color: $color_4;
+      opacity: .5;
+      position: absolute;
+      bottom: 0;
+      right: -100%;
+      transform: translateY(50%);
+      animation: smokeAnimation $jump_duration linear infinite;
+
+      &:nth-child(1) {
+        height: 30px;
+        width: 30px;
+        animation-delay: .3s;
+      }
+
+      &:nth-child(2) {
+        height: 20px;
+        width: 20px;
+        margin-right: 5px;
+        animation-delay: .1s;
+      }
+
+      &:nth-child(3) {
+        height: 10px;
+        width: 10px;
+        margin-right: -3px;
+      }
+    }
+  }
+}
+
+.skate-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+@keyframes skateJumpAnimation {
+  0% {
+    margin-bottom: 0;
+    transform: rotate(0);
+  }
+  25% {
+    margin-bottom: $jump_height*0.9;
+    transform: rotate(-15deg);
+  }
+  30% {
+    margin-bottom: $jump_height;
+  }
+  50% {
+    margin-bottom: $jump_height*0.7;
+    transform: rotate(5deg);
+  }
+  55% {
+    margin-bottom: 0;
+    transform: rotate(0deg);
+  }
+  60% {
+    margin-bottom: $jump_height*0.1;
+    transform: rotate(-5deg);
+  }
+  90% {
+    margin-bottom: 0;
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(0);
+    margin-bottom: 0;
+  }
+}
+
+@keyframes wheelsJumpAnimation {
+  0% {
+    margin-top: 0;
+  }
+  30% {
+    margin-top: 10px;
+  }
+  40% {
+    margin-top: 10px;
+  }
+  60% {
+    margin-top: 0px;
+  }
+  80% {
+    margin-top: 5px;
+    transform: rotate(2deg);
+  }
+  90% {
+    margin-top: 0;
+    transform: rotate(0);
+  }
+}
+
+@keyframes shadowJumpAnimation {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(0.5, 0.8);
+  }
+  60% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes smokeAnimation {
+  0% {
+    right: -100%;
+    transform: translateY(50%) scale(0, 0);
+  }
+  60% {
+    right: 0;
+    transform: translateY(50%) scale(1, 1);
+  }
+  70% {
+    right: 30%;
+  }
+  73% {
+    right: 20%;
+  }
+  80% {
+    right: 60%;
+    transform: translateY(50%) scale(1, 1);
+  }
+  84% {
+    right: 55%;
+    opacity: .5;
+  }
+  90% {
+    opacity: 0;
+    right: 100%;
+    transform: translateY(50%) scale(.6, .6);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes obstacleAnimation {
+  0% {
+    right: 0;
+  }
+  30% {
+    right: 100%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+.obstacle_square {
+  width: $obstacle_size;
+  height: $obstacle_size;
+  background-color: $color_5;
+  animation: obstacleAnimation $jump_duration*2 linear infinite;
+}
+
+.obstacle_triangle {
+  width: 0;
+  height: 0;
+  border-left: $obstacle_size/2 solid transparent;
+  border-right: $obstacle_size/2 solid transparent;
+  border-bottom: $obstacle_size solid $color_6;
+  animation: obstacleAnimation $jump_duration*2 linear infinite;
+  animation-delay: $jump_duration;
+}
+
+.obstacles {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $obstacle_size;
+
+  & > div {
+    position: absolute;
+    right: -100%;
+  }
+}
+
+.landscape {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+body {
+  background-color: $color_1;
+  height: 100vh;
+}
