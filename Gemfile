@@ -19,7 +19,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'knock'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-
+gem 'cloudinary', '~> 1.9.1'
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
