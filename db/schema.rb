@@ -73,7 +73,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
 
   create_table "spots", force: :cascade do |t|
     t.integer "spot_rating"
-    t.string "difficulty_rating"
+    t.integer "difficulty_rating"
+    t.string "type"
     t.string "default_image"
     t.bigint "user_id"
     t.datetime "created_at", null: false
