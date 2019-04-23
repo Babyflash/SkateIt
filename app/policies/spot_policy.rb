@@ -9,6 +9,10 @@ class SpotPolicy < ApplicationPolicy
     true #anyone can see a spot
   end
 
+  def new?
+    return true #anyone can create
+  end
+
   def create?
     return true #anyone can create
   end

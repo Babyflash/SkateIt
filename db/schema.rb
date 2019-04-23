@@ -41,14 +41,14 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
     t.index ["spot_id"], name: "index_locations_on_spot_id"
   end
 
-  create_table "post_content", force: :cascade do |t|
+  create_table "post_contents", force: :cascade do |t|
     t.string "media_url"
     t.string "media_geotag_longitude"
     t.string "media_geotag_latitude"
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_post_content_on_post_id"
+    t.index ["post_id"], name: "index_post_contents_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
   add_foreign_key "checkins", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "locations", "spots"
-  add_foreign_key "post_content", "posts"
+  add_foreign_key "post_contents", "posts"
   add_foreign_key "posts", "spots"
   add_foreign_key "posts", "users"
   add_foreign_key "spot_content", "spots"

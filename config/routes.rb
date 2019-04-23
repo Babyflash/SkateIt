@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/update'
-  get 'posts/destroy'
+
   post 'user_token' => 'user_token#create'
   devise_for :users
   root to: 'pages#home'
@@ -23,5 +20,5 @@ Rails.application.routes.draw do
   delete '/spots/:id', to: 'spots#destroy', as: :destroy
 
   # --- Posts
-  post '/spots/:id/posts', to: 'posts#create', as: :spot_posts
+  post '/spots/:spot_id/posts', to: 'posts#create', as: :spot_posts
 end

@@ -3,14 +3,29 @@
 <p><%= @spot.difficulty_rating %></p>
 
 <ul>
-  <li>
-    <% @posts.each do |post| %>
+  <% @posts.each do |post| %>
+    <li>
       <%= post.description %>
-    <% end %>
-  </li>
+    </li>
+  <% end %>
 </ul>
+<hr>
+<% if policy(Spot).create? %>
+  <%= simple_form_for [@spot, @post] do |f| %>
+    <%= f.input :description, label: "Comment:" %>
 
-<%= simple_form_for [@spot, @post] do |f| %>
-  <%= f.input :description %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<hr>
+<%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
+  <%= f.input :description, as: :string %>
+  <%= f.file_field :pictures, multiple: true %>
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>
+<br>
+<br>
+<br>
+<br>
+<br>
