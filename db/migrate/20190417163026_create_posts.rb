@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :likes
       t.string :hash_tag
       t.references :user, foreign_key: true
+      t.references :spot, foreign_key: true
       t.timestamps null: false
     end
   end

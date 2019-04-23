@@ -3,6 +3,7 @@ class Spot < ApplicationRecord
   has_many :checkins
   has_many :locations
   has_many :spot_contents
+  has_many :posts
   validates_presence_of :default_image
   validates_inclusion_of :spot_rating, :in => 1..5
   validates_inclusion_of :difficulty_rating, :in => 1..10
