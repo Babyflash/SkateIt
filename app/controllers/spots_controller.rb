@@ -3,9 +3,18 @@ class SpotsController < ApplicationController
     
     # --- Create
     def new
+        @spot = Spot.new
     end
 
     def create
+        @spot = Spot.new(spot_params)
+        @spot.user = current_user
+        
+        if @spot.save
+            redirect_to spot_path(@spot)
+        else
+            render 'new'
+        end
     end
     
     # --- Read
@@ -22,4 +31,9 @@ class SpotsController < ApplicationController
     def load
         @spot = Spot.find(params[:id])
     end
+
+    def spot_params
+        params.require(:spot).permit(:spot_rating, :difficulty_rating)
+    end
+
 end
