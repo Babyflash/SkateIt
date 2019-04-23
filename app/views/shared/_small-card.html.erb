@@ -1,5 +1,7 @@
 <div class="card m-3">
-  <img src="https://picsum.photos/200" class="card-img-top" alt="image">
+  <div style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path spot.default_image, :width => 200, :crop => "pad"  %>'); background-repeat: no-repeat; background-size: cover;">
+  </div>
   <div class="card-body">
     <div class="d-flex justify-content-between">
     <p class="card-text">*******</p>
