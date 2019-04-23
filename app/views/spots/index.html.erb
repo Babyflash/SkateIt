@@ -1,5 +1,14 @@
+
 <% @spots.each do |spot| %>
+<div>
+<%= cl_image_tag spot.default_image, height: 300, width: 400, crop: :fill %>
 <%= link_to(spot.id, spot_path(spot))%>
+<%= link_to('Edit', edit_spot_path(spot)) %>
+<%= link_to spot_path(spot), method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="fa fa-trash destroy_dose"></i>
+<% end %>
+ </div>
+ <br>
 <% end %>
 
 

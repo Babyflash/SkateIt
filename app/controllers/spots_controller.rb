@@ -1,7 +1,8 @@
 class SpotsController < ApplicationController
-    before_action 
+    before_action :load, only: [:show, :update, :edit, :destroy]
     
     # --- Create
+
     def new
         @spot = Spot.new
     end
@@ -18,12 +19,27 @@ class SpotsController < ApplicationController
     end
     
     # --- Read
+
     def index
         @spots = Spot.all
     end
 
     def show
-        @spot = Spot.find(params[:id])
+    end
+
+    # --- Update
+
+    def edit
+    end
+
+    def update
+        @spot.update(spot_params)
+        redirect_to '/spots'
+    end
+
+    def destroy
+        @spot.destroy
+        redirect_to '/spots'
     end
 
     private
