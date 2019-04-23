@@ -1,20 +1,62 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <!-- Insert form here -->
+      <div class="form-login">
+        <h2>Log in to continue</h2>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        label: false,
+                        required: false,
+                        autofocus: true,
+                        placeholder: "user@skateit.com",
+                        input_html: { autocomplete: "email" }
+            %>
+            <%= f.input :password,
+                        label: false,
+                        required: false,
+                        placeholder: "*********",
+                        input_html: { autocomplete: "current-password" }
+            %>
+
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+          </div>
+
+          <div class="link-center">
+            <%- if devise_mapping.recoverable? %>
+            <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
+            <% end %>
+          </div>
+
+          <div class = "two-button">
+            <button type="button" class="btn btn-outline-primary" style="margin-right: 2px;">
+              <i class="fab fa-facebook-f" style="margin-right: 4px;"></i>Facebook
+            </button>
+            <button type="button" class="btn btn-outline-danger" style="margin-left: 2px;">
+              <i class="fab fa-google" style="margin-right: 4px;"></i>Google
+            </button>
+          </div>
+        <% end %>
+
+        <hr>
+        <span style="font-size: 12px;">
+          Don't have account?
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+          <% end %>
+        </span>
+
+
+      </div>
+
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
