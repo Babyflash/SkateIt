@@ -4,13 +4,14 @@ class SpotsController < ApplicationController
     # --- Create
 
     def new
-        @spot = Spot.new
+        @spot = current_user.spots.new
+        authorize @spot
     end
 
     def create
-        @spot = Spot.new(spot_params)
-        @spot.user = current_user
-        
+        @spot = current_user.spots.new(spot_params)
+        authorize @spot
+
         if @spot.save
             redirect_to spot_path(@spot)
         else
@@ -21,7 +22,7 @@ class SpotsController < ApplicationController
     # --- Read
 
     def index
-        @spots = Spot.all
+        @spots = policy_scope(Spot).order(created_at: :desc)
     end
 
     def show
@@ -46,6 +47,7 @@ class SpotsController < ApplicationController
 
     def load
         @spot = Spot.find(params[:id])
+        authorize @spot
     end
 
     def spot_params
