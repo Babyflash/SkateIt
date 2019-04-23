@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_064208) do
+ActiveRecord::Schema.define(version: 2019_04_17_163201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkins", force: :cascade do |t|
-    t.bigint "skater_id"
+    t.bigint "user_id"
     t.bigint "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["skater_id"], name: "index_checkins_on_skater_id"
     t.index ["spot_id"], name: "index_checkins_on_spot_id"
+    t.index ["user_id"], name: "index_checkins_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
     t.string "spot_id"
-    t.bigint "skater_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["skater_id"], name: "index_favorites_on_skater_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -55,23 +55,10 @@ ActiveRecord::Schema.define(version: 2019_04_22_064208) do
     t.string "description"
     t.integer "likes"
     t.string "hash_tag"
-    t.bigint "skater_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["skater_id"], name: "index_posts_on_skater_id"
-  end
-
-  create_table "skaters", force: :cascade do |t|
-    t.string "authentication_id"
-    t.string "nickname"
-    t.string "wechat_id"
-    t.string "gender"
-    t.string "avatar"
-    t.string "city"
-    t.string "country"
-    t.string "language"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "spot_content", force: :cascade do |t|
@@ -88,10 +75,10 @@ ActiveRecord::Schema.define(version: 2019_04_22_064208) do
     t.integer "spot_rating"
     t.string "difficulty_rating"
     t.string "default_image"
-    t.bigint "skater_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["skater_id"], name: "index_spots_on_skater_id"
+    t.index ["user_id"], name: "index_spots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,12 +93,12 @@ ActiveRecord::Schema.define(version: 2019_04_22_064208) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "checkins", "skaters"
   add_foreign_key "checkins", "spots"
-  add_foreign_key "favorites", "skaters"
+  add_foreign_key "checkins", "users"
+  add_foreign_key "favorites", "users"
   add_foreign_key "locations", "spots"
   add_foreign_key "post_content", "posts"
-  add_foreign_key "posts", "skaters"
+  add_foreign_key "posts", "users"
   add_foreign_key "spot_content", "spots"
-  add_foreign_key "spots", "skaters"
+  add_foreign_key "spots", "users"
 end
