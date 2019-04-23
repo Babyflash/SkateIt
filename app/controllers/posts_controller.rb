@@ -5,10 +5,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(set_params)
+    post = current_user.posts.new(set_params)
     # post.spot_id = params[:spot_id]
     # post.save
-    # authorize post
+    authorize post
   end
 
   def update

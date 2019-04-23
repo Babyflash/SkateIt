@@ -2,9 +2,15 @@
 <p><%= @spot.spot_rating %></p>
 <p><%= @spot.difficulty_rating %></p>
 
+<ul>
+  <li>
+    <% @posts.each do |post| %>
+      <%= post.description %>
+    <% end %>
+  </li>
+</ul>
+
 <%= simple_form_for [@spot, @post] do |f| %>
   <%= f.input :description %>
-  <%= f.input :photo %>
-  <%= f.input :photo_cache, as: :hidden %>
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

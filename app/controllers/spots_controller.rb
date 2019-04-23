@@ -27,7 +27,7 @@ class SpotsController < ApplicationController
 
     def show
       @post = Post.new
-
+      @posts = Post.where(spot_id: params[:id])
     end
 
     # --- Update

@@ -56,8 +56,10 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
     t.integer "likes"
     t.string "hash_tag"
     t.bigint "user_id"
+    t.bigint "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_posts_on_spot_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
   add_foreign_key "favorites", "users"
   add_foreign_key "locations", "spots"
   add_foreign_key "post_content", "posts"
+  add_foreign_key "posts", "spots"
   add_foreign_key "posts", "users"
   add_foreign_key "spot_content", "spots"
   add_foreign_key "spots", "users"
