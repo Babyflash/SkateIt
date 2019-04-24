@@ -13,14 +13,36 @@
 
 <div class="container">
   <div class="row">
-   <% @spots.each do |spot| %>
+  <div class="col-12">
+   <h3>Ledge Spots</h3>
+   </div>
+   <% @ledge_spots.each do |spot| %>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-
- 
-
-      <%= render 'shared/small-card', :spot => spot %>
-     
+      <%= render 'shared/small-card', :spot => spot %> 
     </div>
      <% end %>
   </div>
+
+  <div class="row">
+  <div class="col-12">
+   <h3>Rail Spots</h3>
+   </div>
+   <% @rail_spots.each do |spot| %>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <%= render 'shared/small-card', :spot => spot %> 
+    </div>
+     <% end %>
+  </div>
+
+  <div class="row">
+  <div class="col-12">
+   <h3>All Spots</h3>
+   </div>
+   <% @spots.each do |spot| %>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <%= render 'shared/small-card', :spot => spot %> 
+    </div>
+     <% end %>
+  </div>
+
 </div>
