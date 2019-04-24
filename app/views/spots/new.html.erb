@@ -1,8 +1,24 @@
-<h3>Add a spot</h3>
-<%= simple_form_for(@spot) do |f| %>
-     <%= f.input :spot_rating %>
-     <%= f.input :difficulty_rating %>
-     <%= f.input :default_image %>
-     <%= f.input :default_image_cache, as: :hidden %>
-     <%= f.button :submit %>
-<% end %>
+
+<% types = {
+    0 => "Ledge",
+    1 => "Rail",
+    2 => "Stair set",
+    3 => "Park",
+    4 => "Transition",
+    5 => "Manual pad"
+}
+%>
+
+<div style="margin: 3rem auto; width: 50%; box-shadow:3px 3px 5px 6px #ccc; border-radius: 10px;padding: 40px; background-color: white;">
+
+    <h3>Add a spot</h3>
+    <%= simple_form_for(@spot) do |f| %>
+         <%= f.input :spot_type, :collection => types.sort.map { |k,v| [v,k]}  %>
+         <%= f.input :difficulty_rating %>
+         <%= f.input :default_image %>
+         <%= f.input :default_image_cache, as: :hidden %>
+         <%= f.button :submit %>
+    <% end %>
+
+</div>
+
