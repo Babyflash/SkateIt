@@ -1,28 +1,61 @@
-<%= cl_image_tag @spot.default_image, height: 300, width: 400, crop: :fill %>
-<p><%= @spot.spot_rating %></p>
-<p><%= @spot.difficulty_rating %></p>
+<div class="container">
+  <div class="row">
 
-<ul>
+  <div class="col-sm col-lg-6">
+  <div class="container" style="margin-top: 8px">
+
+  <%= render 'shared/spot_card', :spot => @spot %>
+  </div>
+  </div>
+  <div class="col-sm col-md-4 grid-container">
+
+     <% @posts.each do |post| %>
+  <% imgs = PostContent.where(post_id: post.id) %>
+  <% img_array = [] %>
+   <% imgs.each do |img| %>
+   <%= cl_image_tag img.media_url, height: 100, width: 100, crop: :fill %>
+    <%end %>
+
+  <% end %>
+  
+  </div>
+
+  </div>
+</div>
+
+
+ <div class="Container">
+        <div class="Content">
+            <div class="Wrapper">
+                <div class="RightContent m-3">
+                    <p>MAP</p>
+                </div>
+                <div class="LeftContent">   
+               
+
+
+
+
   <% @posts.each do |post| %>
-    <li>
-      <%= post.description %>
-    </li>
-  <% end %>
-</ul>
-<hr>
-<% if policy(Spot).create? %>
-  <%= simple_form_for [@spot, @post] do |f| %>
-    <%= f.input :description, label: "Comment:" %>
+  <% imgs = PostContent.where(post_id: post.id) %>
+  <% img_array = [] %>
+   <% imgs.each do |img| %>
+         <% img_array << img %>
+    <%end %>
 
-    <%= f.submit "Save", class: "btn btn-primary" %>
+    <% data_hash = {img: img_array, des: post.description}%>
+    <%= render 'shared/moment-card', :data => data_hash%>
   <% end %>
-<% end %>
+               
+                </div>
+            </div>
+        </div>
+    </div>
 
 <hr>
 <%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
-  <%= f.input :description, as: :string %>
   <%= simple_fields_for :no_model_fields do |n| %>
-    <%= n.input :other_field %>
+    <%= n.input :comment %>
     <%= n.file_field :pictures, multiple: true %>
   <% end %>
 
@@ -33,3 +66,5 @@
 <br>
 <br>
 <br>
+
+

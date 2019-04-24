@@ -11,18 +11,20 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.user_id = current_user.id
     @post.spot_id = params[:spot_id]
-    @post.description = params[:no_model_fields][:other_field]
+    @post.description = params[:no_model_fields][:comment]
     authorize @post
     @post.save!
 
     # @post.description = params[:post][:description]
+  if !params[:no_model_fields][:pictures].nil?
     params[:no_model_fields][:pictures].each do |pic|
       @post_content = PostContent.new
       @post_content.post_id = @post.id
       @post_content.media_url = pic
       # authorize @post_content
-      @post_content.save
+      @post_content.save!
     end
+  end
 
     redirect_to spot_path(params[:spot_id])
     # if @post.save
