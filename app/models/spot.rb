@@ -3,7 +3,7 @@ class Spot < ApplicationRecord
   has_many :checkins
   has_many :locations
   has_many :spot_contents
-  has_many :posts
+  has_many :posts, dependent: :destroy
   # has_many :post_contents, through: :post
   validates_presence_of :default_image
   validates_inclusion_of :spot_rating, :in => 1..5

@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "geo_tag_longitude"
-    t.string "geo_tag_latitude"
+    t.float "geo_long"
+    t.float "geo_lat"
     t.bigint "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
 
   create_table "post_contents", force: :cascade do |t|
     t.string "media_url"
-    t.string "media_geotag_longitude"
-    t.string "media_geotag_latitude"
+    t.float "geo_long"
+    t.float "geo_lat"
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,20 +63,20 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "spot_content", force: :cascade do |t|
+  create_table "spot_contents", force: :cascade do |t|
     t.string "media_url"
-    t.string "media_geotag_longitude"
-    t.string "media_geotag_latitude"
+    t.float "geo_long"
+    t.float "geo_lat"
     t.bigint "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["spot_id"], name: "index_spot_content_on_spot_id"
+    t.index ["spot_id"], name: "index_spot_contents_on_spot_id"
   end
 
   create_table "spots", force: :cascade do |t|
     t.integer "spot_rating"
     t.integer "difficulty_rating"
-    t.string "type"
+    t.string "spot_type"
     t.string "default_image"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -103,6 +103,6 @@ ActiveRecord::Schema.define(version: 2019_04_17_163201) do
   add_foreign_key "post_contents", "posts"
   add_foreign_key "posts", "spots"
   add_foreign_key "posts", "users"
-  add_foreign_key "spot_content", "spots"
+  add_foreign_key "spot_contents", "spots"
   add_foreign_key "spots", "users"
 end
