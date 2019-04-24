@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.user_id = current_user.id
     @post.spot_id = params[:spot_id]
-    @post.description = params[:no_model_fields][:other_field]
+    @post.description = params[:no_model_fields][:comment]
     authorize @post
     @post.save!
 

@@ -1,0 +1,10 @@
+<div class="card-product m-3">
+    <% if data[:img].first.nil? %>
+  
+    <% else %>
+    <%= cl_image_tag data[:img].first.media_url, height: 100, width: 100, crop: :pad %>
+    <%end%>
+  <div class="card-product-infos">
+    <p><%=data[:des]%></p>
+  </div>
+</div>
