@@ -21,36 +21,32 @@
 
 
 <hr>
-  <div class="spot-type row">
-  <div class="col-12">
-   <h3>Ledge Spots</h3>
-   </div>
+
+
+  <h3>Ledge Spots</h3>
+  <div class="cards">
    <% @ledge_spots.each do |spot| %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <%= render 'shared/small-card', :spot => spot %> 
-    </div>
      <% end %>
   </div>
 <hr>
-  <div class="spot-type row">
-  <div class="col-12">
+
    <h3>Rail Spots</h3>
-   </div>
+<div class="cards">
    <% @rail_spots.each do |spot| %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+  
       <%= render 'shared/small-card', :spot => spot %> 
-    </div>
+
      <% end %>
   </div>
 <hr>
-  <div class="spot-type row">
-  <div class="col-12">
+
    <h3>All Spots</h3>
-   </div>
+  <div class="cards">
    <% @spots.each do |spot| %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
       <%= render 'shared/small-card', :spot => spot %> 
-    </div>
+
      <% end %>
   </div>
 
