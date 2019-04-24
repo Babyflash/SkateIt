@@ -1,29 +1,31 @@
-<% if policy(Spot).create? %>
-  <%= link_to "New spot", new_spot_path %>
-<% end %>
+ <div class="Container">
+        <div class="Content">
+            <div class="Wrapper">
+                <div class="RightContent">
+                    <p>MAP</p>
+                </div>
+                <div class="LeftContent">   
+                   <% @spots.each do |spot| %>
+                  <div>
+                  <%= cl_image_tag spot.default_image, height: 300, width: 400, crop: :fill %>
+                      
+                      <% if policy(spot).show? %>
+                          <%= link_to 'Spot Page', spot %>
+                      <% end %>
 
-<% @spots.each do |spot| %>
-<div>
-<%= cl_image_tag spot.default_image, height: 300, width: 400, crop: :fill %>
-    
-    <% if policy(spot).show? %>
-        <%= link_to 'Spot Page', spot %>
-    <% end %>
+                      <% if policy(spot).edit? %>
+                          <%= link_to('Edit', edit_spot_path(spot)) %>
+                      <% end %>
 
-    <% if policy(spot).edit? %>
-        <%= link_to('Edit', edit_spot_path(spot)) %>
-    <% end %>
-
-    <% if policy(spot).destroy? %>
-        <%= link_to spot_path(spot), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <i class="fa fa-trash destroy_dose"></i>
-        <% end %>
-    <%end%>
- </div>
- <br>
-<% end %>
-
-
-<h1>Cloud Test</h1>
-
-<%= cl_image_tag("q39viy4zbc4owikrq1jh", width: 400, height: 300, crop: :fill) %>
+                      <% if policy(spot).destroy? %>
+                          <%= link_to spot_path(spot), method: :delete, data: { confirm: "Are you sure?" } do %>
+                              <i class="fa fa-trash destroy_dose"></i>
+                          <% end %>
+                      <%end%>
+                  </div>
+                  <br>
+                  <% end %> 
+                </div>
+            </div>
+        </div>
+    </div>
