@@ -1,9 +1,19 @@
+<% types = {
+    0 => "Ledge",
+    1 => "Rail",
+    2 => "Stair set",
+    3 => "Park",
+    4 => "Transition",
+    5 => "Manual pad"
+}
+%>
+
 <div class="card-trip">
   <%= cl_image_tag spot.default_image, height: 100, width: 100, crop: :fill %>
   <div class="card-trip-infos">
     <div>
-      <h2>Rating: <%=spot.spot_rating%></h2>
-      <p>Difficulty: <%= spot.difficulty_rating%></p>
+      <h2>Type: <%=types[spot.spot_type.to_i]%></h2>
+      <p>Difficulty: <%= spot.difficulty_rating %></p>
     </div>
    <i class="fas fa-map-marker-alt"></i>
   </div>
