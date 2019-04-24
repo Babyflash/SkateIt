@@ -23,13 +23,20 @@ class SpotsController < ApplicationController
 
     def index
         @spots = policy_scope(Spot).order(created_at: :desc)
+
+        @markers = @spots.map do |spot|
+          {
+            lat: spot.geo_lat,
+            lng: spot.geo_long,
+            infoWindow: render_to_string(partial: "infowindow", locals: { spot: spot })
+          }
+        end
     end
 
     def show
       @post = Post.new
       @posts = Post.where(spot_id: params[:id])
       @content = PostContent.new
-
     end
 
     # --- Update
