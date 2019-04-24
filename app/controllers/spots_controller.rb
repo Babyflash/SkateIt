@@ -65,7 +65,7 @@ class SpotsController < ApplicationController
     end
 
     def spot_params
-        params.require(:spot).permit(:spot_rating, :difficulty_rating, :default_image)
+        params.require(:spot).permit(:spot_type, :difficulty_rating, :default_image)
     end
 
 end

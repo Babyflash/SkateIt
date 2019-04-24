@@ -31,22 +31,15 @@
                     <p>MAP</p>
                 </div>
                 <div class="LeftContent">   
-               
-
-
-
-
-  <% @posts.each do |post| %>
-  <% imgs = PostContent.where(post_id: post.id) %>
-  <% img_array = [] %>
-   <% imgs.each do |img| %>
-         <% img_array << img %>
-    <%end %>
-
-    <% data_hash = {img: img_array, des: post.description}%>
-    <%= render 'shared/moment-card', :data => data_hash%>
-  <% end %>
-               
+                  <% @posts.each do |post| %>
+                  <% imgs = PostContent.where(post_id: post.id) %>
+                  <% img_array = [] %>
+                  <% imgs.each do |img| %>
+                        <% img_array << img %>
+                    <%end %>
+                    <% data_hash = {img: img_array, des: post.description}%>
+                    <%= render 'shared/moment-card', :data => data_hash%>
+                  <% end %>
                 </div>
             </div>
         </div>
