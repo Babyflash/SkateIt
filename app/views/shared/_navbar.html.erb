@@ -23,7 +23,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to "Home", "/", class: "nav-link" %>
+          <%= link_to "/spots/new", class: "navbar-brand" do %>
+    <i class="fas fa-plus"></i>
+    <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "Favorites", "#", class: "nav-link" %>
