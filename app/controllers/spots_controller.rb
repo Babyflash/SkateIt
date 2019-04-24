@@ -29,6 +29,7 @@ class SpotsController < ApplicationController
       @post = Post.new
       @posts = Post.where(spot_id: params[:id])
       @content = PostContent.new
+
     end
 
     # --- Update

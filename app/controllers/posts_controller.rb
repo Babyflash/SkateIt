@@ -7,22 +7,29 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(set_params)
-    # @post = Post.new
+    # @post = Post.new(set_params)
+    @post = Post.new
     @post.user_id = current_user.id
     @post.spot_id = params[:spot_id]
-    params[:pictures]
-    # @post.description = params[:post][:description]
-
-    # @post_content = PostContent.new
-
+    @post.description = params[:no_model_fields][:other_field]
     authorize @post
+    @post.save!
 
-    if @post.save
-      redirect_to spot_path(params[:spot_id])
-    else
-      redirect_to spot_path(params[:spot_id])
+    # @post.description = params[:post][:description]
+    params[:no_model_fields][:pictures].each do |pic|
+      @post_content = PostContent.new
+      @post_content.post_id = @post.id
+      @post_content.media_url = pic
+      # authorize @post_content
+      @post_content.save
     end
+
+    redirect_to spot_path(params[:spot_id])
+    # if @post.save
+    #   redirect_to spot_path(params[:spot_id])
+    # else
+    #   redirect_to spot_path(params[:spot_id])
+    # end
   end
 
   def update
@@ -34,6 +41,6 @@ class PostsController < ApplicationController
   private
 
   def set_params
-    params.require(:post).permit(:description, :spot_id, :pictures)
+    params.require(:post).permit(:description, :spot_id, { pictures: []})
   end
 end

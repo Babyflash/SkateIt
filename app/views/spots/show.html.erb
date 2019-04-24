@@ -21,7 +21,11 @@
 <hr>
 <%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
   <%= f.input :description, as: :string %>
-  <%= f.file_field :pictures, multiple: true %>
+  <%= simple_fields_for :no_model_fields do |n| %>
+    <%= n.input :other_field %>
+    <%= n.file_field :pictures, multiple: true %>
+  <% end %>
+
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>
 <br>
