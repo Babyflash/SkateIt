@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
     before_action :load, only: [:show, :update, :edit, :destroy]
-    
+
     # --- Create
 
     def new
@@ -18,7 +18,7 @@ class SpotsController < ApplicationController
             render 'new'
         end
     end
-    
+
     # --- Read
 
     def index
@@ -26,6 +26,10 @@ class SpotsController < ApplicationController
     end
 
     def show
+      @post = Post.new
+      @posts = Post.where(spot_id: params[:id])
+      @content = PostContent.new
+
     end
 
     # --- Update

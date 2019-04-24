@@ -1,3 +1,35 @@
 <%= cl_image_tag @spot.default_image, height: 300, width: 400, crop: :fill %>
 <p><%= @spot.spot_rating %></p>
 <p><%= @spot.difficulty_rating %></p>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= post.description %>
+    </li>
+  <% end %>
+</ul>
+<hr>
+<% if policy(Spot).create? %>
+  <%= simple_form_for [@spot, @post] do |f| %>
+    <%= f.input :description, label: "Comment:" %>
+
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<hr>
+<%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
+  <%= f.input :description, as: :string %>
+  <%= simple_fields_for :no_model_fields do |n| %>
+    <%= n.input :other_field %>
+    <%= n.file_field :pictures, multiple: true %>
+  <% end %>
+
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+<br>
+<br>
+<br>
+<br>
+<br>

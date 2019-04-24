@@ -1,6 +1,6 @@
 class CreatePostContent < ActiveRecord::Migration[5.2]
   def change
-    create_table :post_content do |t|
+    create_table :post_contents do |t|
       t.string :media_url
       t.string :media_geotag_longitude
       t.string :media_geotag_latitude
