@@ -37,10 +37,11 @@ html, body, .Container
     width: 100%;
     height: 100%;
 }
-    .Wrapper > div
-    {
-        height: 100%;
-    }
+
+.Wrapper > div
+{
+    height: 100%;
+}
 
 .LeftContent
 {
@@ -50,7 +51,6 @@ html, body, .Container
 
 .RightContent
 {
-    background-color: orange;
     float: right;
     margin-left: 10px;
     width: 50%;
