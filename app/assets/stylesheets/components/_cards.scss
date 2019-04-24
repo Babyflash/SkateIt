@@ -5,6 +5,7 @@
 }
 
 .card-category {
+  position: relative;
   background-size: cover;
   background-position: center;
   height: 180px;
@@ -17,7 +18,39 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: 0.2s ease;
 }
+
+.card-category:hover {
+  height: 210px;
+  .spot-icon{
+    color: #094272;
+  }
+}
+
+
+.spot-icon{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 8px;
+}
+
+.spot-address {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 8px;
+  font-size: 16px;
+  color: rgba(0,0,0,0.3);
+  transition: 0.2s ease;
+}
+
+.card-category:hover .spot-address{
+  font-size: 28px;
+  color:  white !important;
+}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
@@ -31,6 +64,10 @@
   .cards {
     grid-template-columns: 1fr;
   }
+  .card-category:hover .spot-address{
+  font-size: 20px;
+  color:  white !important;
+}
 }
 
 // Medium devices (tablets, 768px and up)
@@ -38,6 +75,10 @@
   .cards {
     grid-template-columns: 1fr 1fr;
   }
+  .card-category:hover .spot-address{
+  font-size: 20px;
+  color:  white !important;
+}
 }
 
 // Large devices (desktops, 992px and up)

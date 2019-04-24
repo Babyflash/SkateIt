@@ -14,7 +14,7 @@
   border: 1px solid #E7E7E7;
 }
 
-.search-form-control .form-control:focus {
+.search-form-control .form-control:hover {
   border: 1px solid #45A9E5;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
@@ -27,10 +27,6 @@
   transition: background 0.3s ease;
 }
 
-.btn-flat:hover {
-  background: #094272;
-  color: white;
-}
 
 .btn {
   margin-right: 8px; 
