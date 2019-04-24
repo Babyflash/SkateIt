@@ -17,27 +17,73 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken }));
+
 
     const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
+    if(markers) {
+      markers.forEach((marker) => {
 
-      const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url('${marker.image_url}')`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '56px';
-      element.style.height = '56px';
+        const element = document.createElement('div');
+        element.className = 'marker';
+        element.style.backgroundImage = `url('${marker.image_url}')`;
+        element.style.backgroundSize = 'contain';
+        element.style.width = '56px';
+        element.style.height = '56px';
 
-      new mapboxgl.Marker(element)
-        .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-        .setHTML(marker.infoWindow.content))
-        .addTo(map);
-    });
+        new mapboxgl.Marker(element)
+          .setLngLat([ marker.lng, marker.lat ])
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+          .setHTML(marker.infoWindow.content))
+          .addTo(map);
+      });
 
-    fitMapToMarkers(map, markers)
+      fitMapToMarkers(map, markers)
+    }
+
+    var marker = new mapboxgl.Marker({
+      draggable: true
+    })
+    .setLngLat([0, 0])
+    .addTo(map);
+
+    var geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      // mapboxgl: mapboxgl
+    })
+
+    map.addControl(geocoder);
+
+    geocoder.on('results', function(results) {
+      console.log(results);
+      // marker.setLngLat(results)
+      map.flyTo({
+        // Pass result and custom animation
+      });
+    })
+    // var geocoder = new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken,
+    //   marker: {
+    //   color: 'orange'
+    //   },
+    //   mapboxgl: mapboxgl
+    // });
+    // map.addControl(geocoder);
+
+    function onDragEnd() {
+      var lngLat = marker.getLngLat();
+      const coordinates = document.getElementById('coordinates');
+      coordinates.style.display = 'block';
+      coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+      const lat = document.getElementById('spot_geo_lat');
+      const lng = document.getElementById('spot_geo_lng');
+      lat.value = lngLat.lat;
+      lng.value = lngLat.lng;
+    }
+
+    marker.on('dragend', onDragEnd);
   }
 };
+
+
 
 export { initMapbox };
