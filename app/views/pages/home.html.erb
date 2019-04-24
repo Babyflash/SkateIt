@@ -1,14 +1,14 @@
-<div class = "skate-animation-container">
-  <%= render 'shared/skate-animation' %>
-</div>
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
-  <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <a class="btn btn-primary" href="#">Apply now</a>
+<div class="container">
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/doe2rb42f/image/upload/v1556114302/skater_tbmtg7.png);  background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container d-flex">
+    <h1>Skate the <strong>World</strong></h1>
+    <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556021369/skateit_ymnmqb.svg', height: 40, width: 100, crop: :fill, class: "logo"  %>
   </div>
 </div>
+
+
 
 
 <div class="container">
@@ -44,5 +44,7 @@
     </div>
      <% end %>
   </div>
+
+</div>
 
 </div>
