@@ -11,19 +11,14 @@ html, body, .Container
     height: 100%;
 }
 
-    .Container:before
-    {
+.Container:before
+{
         content: '';
         height: 100%;
         float: left;
-    }
-
-.Header
-{
-    height: 50px;
-    margin-bottom: 10px;
-    background-color: #EEE8D5;
 }
+
+
 .Content
 {
     position: relative;
