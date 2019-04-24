@@ -3,7 +3,15 @@
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/doe2rb42f/image/upload/v1556114302/skater_tbmtg7.png);  background-position: center center; background-repeat: no-repeat; background-size: cover;">
   <div class="container d-flex">
-    <h1>Skate the <strong>World</strong></h1>
+    <div>
+    <h1>SKATE THE <strong>WORLD</strong></h1>
+    <div class="d-flex align-items-center">
+    <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATE</strong> A SPOT</h2>
+      <%= link_to "/spots/new", class: "navbar-brand" do %>
+    <i style="margin-left: 8px" class="add-icon fas fa-plus"></i>
+    <% end %>
+    </div>
+    </div>
     <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556021369/skateit_ymnmqb.svg', height: 40, width: 100, crop: :fill, class: "logo"  %>
   </div>
 </div>
@@ -11,8 +19,9 @@
 
 
 
-<div class="container">
-  <div class="row">
+
+<hr>
+  <div class="spot-type row">
   <div class="col-12">
    <h3>Ledge Spots</h3>
    </div>
@@ -22,8 +31,8 @@
     </div>
      <% end %>
   </div>
-
-  <div class="row">
+<hr>
+  <div class="spot-type row">
   <div class="col-12">
    <h3>Rail Spots</h3>
    </div>
@@ -33,8 +42,8 @@
     </div>
      <% end %>
   </div>
-
-  <div class="row">
+<hr>
+  <div class="spot-type row">
   <div class="col-12">
    <h3>All Spots</h3>
    </div>
@@ -44,7 +53,5 @@
     </div>
      <% end %>
   </div>
-
-</div>
 
 </div>
