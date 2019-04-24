@@ -9,28 +9,31 @@ class SpotsController < ApplicationController
     end
 
     def create
-        @spot = current_user.spots.new(spot_params)
-        authorize @spot
+      @spot = current_user.spots.new(spot_params)
+      authorize @spot
 
-        if @spot.save
-            redirect_to spot_path(@spot)
-        else
-            render 'new'
-        end
+      if @spot.save
+        redirect_to spot_path(@spot)
+      else
+        render 'new'
+      end
     end
 
     # --- Read
 
     def index
-        @spots = policy_scope(Spot).order(created_at: :desc)
+      @spots = policy_scope(Spot).order(created_at: :desc)
 
-        @markers = @spots.map do |spot|
-          {
-            lat: spot.geo_lat,
-            lng: spot.geo_long,
-            infoWindow: render_to_string(partial: "infowindow", locals: { spot: spot })
-          }
-        end
+      @markers = @spots.map do |spot|
+        {
+          # lat: spot.geo_lat,
+          # lng: spot.geo_lng
+          lat: 47.9180385,
+          lng: 106.9136493
+
+          # infoWindow: { content: render_to_string(partial: "/spots/map_window", locals: { spot: spot }) }
+        }
+      end
     end
 
     def show
