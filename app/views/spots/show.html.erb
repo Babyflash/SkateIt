@@ -1,4 +1,30 @@
-<%= cl_image_tag @spot.default_image, height: 300, width: 400, crop: :fill %>
+<div class="container">
+  <div class="row">
+
+  <div class="col-sm col-lg-6">
+  <div class="container" style="margin-top: 8px">
+  <%= render 'shared/spot_card' %>
+  </div>
+  </div>
+  <div class="col-sm col-md-4 grid-container">
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+  <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+    <%= cl_image_tag @spot.default_image, height: 100, width: 100, crop: :fill %>
+  
+  </div>
+
+  </div>
+</div>
+
 <p><%= @spot.spot_rating %></p>
 <p><%= @spot.difficulty_rating %></p>
 
@@ -25,3 +51,5 @@
 <br>
 <br>
 <br>
+
+
