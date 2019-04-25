@@ -18,6 +18,9 @@
   font-weight: bold;
   margin: 0;
 }
+#index-card-img-cont img{
+width: 400px;
+}
 
 .card-product p {
   font-size: 12px;
@@ -29,4 +32,9 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  color: black !important;
+}
+
+.card-product-infos >h2{
+  color: black;
 }

@@ -1,12 +1,12 @@
-<div class="card-product m-3">
-    <% if data[:img].first.nil? %>
-  
-    <% else %>
-    <%= cl_image_tag data[:img].first.media_url, height: 100, width: 100, crop: :pad %>
-    <%end%>
-  <div class="card-product-infos">
-    <p><%=data[:des]%></p>
-    <%# need a post controller %>
-  <%# need to implement delete and edit %>
-  </div>
+<div class="card-product m-3" style="border-radius: 16px; height: 150px; ">
+     <% if data[:img].first.nil? %>
+     <% else %>
+     <div style="height: 200px; width: 300px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path data[:img].first.media_url, :crop => :pad  %>');  background-position: center center; background-repeat: no-repeat; background-size: cover;">
+    </div>
+     <%end%>
+ 
+    <div class="card-product-infos">
+        <p><%=data[:des]%></p>
+    </div>
 </div>

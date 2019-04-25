@@ -18,33 +18,41 @@
   </div>
 </div>
 <hr>
-  <h3 style="color: #898989"><%=link_to "Ledges", :controller => "spots", :query => "ledge"%></h3>
+  <h3 style="color: #898989">Ledges</h3>
   <div class="cards">
-   <% @ledge_spots.each do |spot| %>
+   <% @ledge_spots[0..2].each do |spot| %>
        
       <%= render 'shared/small-card', :spot => spot %> 
 
      <% end %>
   </div>
+  <div style="margin-top: 6px;">
+  <%=link_to "all ledges", :controller => "spots", :query => "ledge"%> <span style="color: #898989"> (<%=@ledge_spots.count%>)</span>
+  </div>
 <hr>
 
-   <h3 style="color: #898989" ><%=link_to "Rails", :controller => "spots", :query => "rail"%></h3>
+   <h3 style="color: #898989" >Rails</h3>
 <div class="cards">
-   <% @rail_spots.each do |spot| %>
+   <% @rail_spots[0..2].each do |spot| %>
   
       <%= render 'shared/small-card', :spot => spot %> 
 
      <% end %>
   </div>
+    <div style="margin-top: 6px;">
+  <%=link_to "all rails", :controller => "spots", :query => "rail"%><span style="color: #898989"> (<%=@rail_spots.count%>)</span>
+  </div>
 <hr>
 
-   <h3 style="color: #898989" ><%=link_to "All spots", :controller => "spots"%></h3>
+   <h3 style="color: #898989" >All spots</h3>
   <div class="cards">
-   <% @spots.each do |spot| %>
+   <% @spots[0..2].each do |spot| %>
 
       <%= render 'shared/small-card', :spot => spot %> 
 
      <% end %>
   </div>
-
+  <div style="margin-top: 6px;">
+  <%=link_to "all spots", :controller => "spots"%> <span style="color: #898989"> (<%=@spots.count%>)</span>
+  </div>
 </div>
