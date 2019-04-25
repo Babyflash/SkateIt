@@ -1,22 +1,13 @@
-<div class="card-product m-3">
+<div class="card-product m-3" style="border-radius: 16px;">
+<%= link_to spot do %>
      <div style="height: 200px; width: 300px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path spot.default_image, :crop => :pad  %>');  background-position: center center; background-repeat: no-repeat; background-size: cover;">
     </div>
+    <%end%>
     <div class="card-product-infos">
-        <h2>Address</h2>
-            <p><%= spot.spot_rating %></p>
-            <p><%= spot.difficulty_rating %></p>
-            <% if policy(spot).show? %>
-                 <%= link_to 'Spot Page', spot %>
-            <% end %>
-            <% if policy(spot).edit? %>
-                <%= link_to('Edit', edit_spot_path(spot)) %>
-             <% end %>
-            <% if policy(spot).destroy? %>
-                <%= link_to spot_path(spot), method: :delete, data: { confirm: "Are you sure?" } do %>
-                <i class="fa fa-trash destroy_dose"></i>
-                <% end %>
-            <%end%>
+        <p>Address: <%= spot.geo_lat%> <%= spot.geo_lng%></p>
+         <p>Type: <%= spot.spot_type %></p>
+         <p>Comments: <%= spot.posts.count %></p>
     </div>
 </div>
 

@@ -4,16 +4,26 @@
   <%= link_to "/", class: "navbar-brand" do %>
      <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556116874/skateit-logo_pb3rke.png', width: 100 %>
     <% end %>
+    <div class="icon-container">
+ <%= link_to "/spots/new", class: "navbar-brand" do %>
+    <i class="add-icon fas fa-plus"></i>
+    <% end %>
+    </div>
+   
+  </div>
 
-    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+   <%= form_tag spots_path, method: :get do |f| %>
   <div class="search-form-control form-group m-3 d-flex align-items-center">
-    <input style="height: 3rem;" class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="search" />
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control string required search-form-control",
+        placeholder: "Find a spot"
+    %>
     <button name="button" type="submit" class="btn btn-flat">
       <i style="" class="search-icon fas fa-search"></i>
     </button>
   </div>
   <% end %>
-  </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,9 +33,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to "/spots/new", class: "navbar-brand" do %>
-    <i class="add-icon fas fa-plus"></i>
-    <% end %>
+         
         </li>
         <li class="nav-item">
           <%= link_to "", "#", class: "nav-link" %>

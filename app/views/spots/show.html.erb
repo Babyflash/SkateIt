@@ -1,8 +1,8 @@
 <div class="Container">
   <div class="Content">
     <div class="Wrapper">
-
       <div class="RightContent m-3" id="map" data-spot = "<%= @spot.to_json %>" data-view-type="spot" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
 
       </div>
 
@@ -54,8 +54,10 @@
                   <% imgs.each do |img| %>
                         <% img_array << img %>
                     <%end %>
-                    <% data_hash = {img: img_array, des: post.description}%>
+                    <% data_hash = {post: post, img: img_array, des: post.description}%>
+
                     <%= render 'shared/moment-card', :data => data_hash%>
+                    
         <% end %>
 
 
