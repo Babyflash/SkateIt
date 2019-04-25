@@ -20,10 +20,8 @@
 <hr>
   <h3 style="color: #898989">Ledges</h3>
   <div class="cards">
-   <% @ledge_spots[0..2].each do |spot| %>
-       
+   <% @ledge_spots[0..2].each do |spot| %>      
       <%= render 'shared/small-card', :spot => spot %> 
-
      <% end %>
   </div>
   <div style="margin-top: 6px;">
@@ -48,7 +46,7 @@
   <div class="cards">
    <% @spots[0..2].each do |spot| %>
 
-      <%= render 'shared/small-card', :spot => spot %> 
+      <%= link_to (render 'shared/small-card', :spot => spot), spot_path(spot.id) %>
 
      <% end %>
   </div>
