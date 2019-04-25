@@ -32,8 +32,8 @@
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
 
-        <%= f.input :geo_lat, as: :hidden, class: "geo-lat" %>
-        <%= f.input :geo_lng, as: :hidden, class: "geo-lng" %>
+        <%= f.input :geo_lat, class: "geo-lat" %>
+        <%= f.input :geo_lng, class: "geo-lng" %>
 
         <pre id='coordinates' class='coordinates'></pre>
         <br>

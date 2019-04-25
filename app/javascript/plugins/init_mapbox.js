@@ -64,6 +64,7 @@ function loadDraggableMarker(map) {
     const coor = results.features[0].center
 
     marker.setLngLat(coor).addTo(map)
+    setMarkerLngLat(marker);
   })
 
   map.on('click', function(e) {
@@ -76,11 +77,6 @@ function loadSinglePostMap(map, mapElement) {
   const spot = JSON.parse(mapElement.dataset.spot);
   console.log(`${spot.geo_lat}:${spot.geo_lng}`)
   if(spot){
-    // map.flyTo({
-    //   zoom: 8,
-    //   center: [spot.geo_lat, spot.geo_lng]
-    // });
-
     const bounds = new mapboxgl.LngLatBounds();
     bounds.extend([ spot.geo_lng, spot.geo_lat ])
     map.fitBounds(bounds, { duration: 2000, padding: 70, maxZoom: 15 });
@@ -88,7 +84,7 @@ function loadSinglePostMap(map, mapElement) {
     var marker = new mapboxgl.Marker({
       draggable: false
     })
-    .setLngLat([spot.geo_lat, spot.geo_lng])
+    .setLngLat([spot.geo_lng, spot.geo_lat])
     .addTo(map);
   }
 
