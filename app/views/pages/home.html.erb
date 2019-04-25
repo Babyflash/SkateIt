@@ -46,7 +46,7 @@
   <div class="cards">
    <% @spots[0..2].each do |spot| %>
 
-      <%= link_to (render 'shared/small-card', :spot => spot), spot_path(spot.id) %>
+      <%= render 'shared/small-card', :spot => spot %>
 
      <% end %>
   </div>
