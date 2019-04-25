@@ -1,10 +1,9 @@
 <div class="card-product m-3">
+<%= link_to spot do %>
      <div style="height: 200px; width: 300px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path spot.default_image, :crop => :pad  %>');  background-position: center center; background-repeat: no-repeat; background-size: cover;">
-     <% if policy(spot).show? %>
-                 <%= link_to 'Spot Page', spot %>
-            <% end %>
     </div>
+    <%end%>
     <div class="card-product-infos">
         <h2>Address</h2>
             <p><%= spot.spot_rating %></p>
