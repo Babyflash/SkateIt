@@ -9,4 +9,11 @@ class Spot < ApplicationRecord
   # validates_inclusion_of :spot_rating, :in => 1..5, :message => "must be between 1 and 5"
   validates_inclusion_of :difficulty_rating, :in => 1..10, :message => "must be between 1 and 10"
   mount_uploader :default_image, PhotoUploader
+  include PgSearch
+
+  pg_search_scope :search_by_type,
+    against: [ :spot_type ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end
