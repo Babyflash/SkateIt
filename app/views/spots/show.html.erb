@@ -1,51 +1,42 @@
-<div class="container">
-  <div class="row">
+<div class="Container">
+  <div class="Content">
+    <div class="Wrapper">
 
-  <div class="col-sm col-lg-6">
-  <div class="container" style="margin-top: 8px">
+      <div class="RightContent m-3" id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
-  <%= render 'shared/spot_card', :spot => @spot %>
-  </div>
-  </div>
-  <div class="col-sm col-md-4 grid-container">
+      </div>
 
-     <% @posts.each do |post| %>
-  <% imgs = PostContent.where(post_id: post.id) %>
-  <% img_array = [] %>
-   <% imgs.each do |img| %>
-   <%= cl_image_tag img.media_url, height: 100, width: 100, crop: :fill %>
-    <%end %>
+      <div class="LeftContent">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="margin-top: 16px; margin-left: 16px;">
+          <div class="carousel-inner">
+          <%# -------- items --------- %>
+            <div class="carousel-item active" data-interval="10000">
+              <%= cl_image_tag @spot.default_image  %>
+            </div>
+            <% @posts.each do |post| %>
+            <% imgs = PostContent.where(post_id: post.id) %>
+            <% img_array = [] %>
+            <% imgs.each do |img| %>
+            <div class="carousel-item" data-interval="2000">
 
-  <% end %>
-  
-  </div>
-
-  </div>
+              <%= cl_image_tag img.media_url %>
+            </div>
+            <%end %>
+            <% end %>
+        </div>
+        <%# --------buttons-------- %>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only">Next</span>
+        </a>
 </div>
 
-
- <div class="Container">
-        <div class="Content">
-            <div class="Wrapper">
-                <div class="RightContent m-3">
-                    <p>MAP</p>
-                </div>
-                <div class="LeftContent">   
-                  <% @posts.each do |post| %>
-                  <% imgs = PostContent.where(post_id: post.id) %>
-                  <% img_array = [] %>
-                  <% imgs.each do |img| %>
-                        <% img_array << img %>
-                    <%end %>
-                    <% data_hash = {img: img_array, des: post.description}%>
-                    <%= render 'shared/moment-card', :data => data_hash%>
-                  <% end %>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<hr>
+<div class="container">
+<div style="margin-top: 16px; margin-left: 16 !important; width: 100%; box-shadow:3px 3px 5px 6px #ccc; border-radius: 10px; padding: 20px; background-color: white;">
 <%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
   <%= simple_fields_for :no_model_fields do |n| %>
     <%= n.input :comment %>
@@ -54,10 +45,43 @@
 
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
+</div>
+
+        <% @posts.each do |post| %>
+                  <% imgs = PostContent.where(post_id: post.id) %>
+                  <% img_array = [] %>
+                  <% imgs.each do |img| %>
+                        <% img_array << img %>
+                    <%end %>
+                    <% data_hash = {img: img_array, des: post.description}%>
+                    <%= render 'shared/moment-card', :data => data_hash%>
+        <% end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

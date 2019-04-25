@@ -1,17 +1,13 @@
 <div class="Container">
   <div class="Content">
     <div class="Wrapper">
-
       <div class="RightContent m-3" id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
       </div>
-
       <div class="LeftContent">
         <% @spots.each do |spot| %>
          <%= render 'shared/big-card',  :spot => spot %>
         <% end %>
       </div>
-
     </div>
   </div>
 </div>
