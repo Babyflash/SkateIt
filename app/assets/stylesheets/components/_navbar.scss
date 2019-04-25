@@ -12,4 +12,15 @@
 
 .add-icon {
   color: #094272;
+  border: 1px solid black;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 22px;
+  transition: 0.2s ease;
 }
+
+.add-icon:hover {
+  font-size: 25px;
+  color: #45A9E6;
+}
+
