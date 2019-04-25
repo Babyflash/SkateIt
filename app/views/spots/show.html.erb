@@ -54,7 +54,7 @@
                   <% imgs.each do |img| %>
                         <% img_array << img %>
                     <%end %>
-                    <% data_hash = {img: img_array, des: post.description}%>
+                    <% data_hash = {post: post, img: img_array, des: post.description}%>
                     <%= render 'shared/moment-card', :data => data_hash%>
         <% end %>
 
