@@ -19,9 +19,9 @@
   <h3 style="color: #898989"><%=link_to "Ledges", :controller => "spots", :query => "ledge"%></h3>
   <div class="cards">
    <% @ledge_spots.each do |spot| %>
-       <%= link_to spot do %>
+       
       <%= render 'shared/small-card', :spot => spot %> 
-      <% end %>
+
      <% end %>
   </div>
 <hr>
