@@ -17,8 +17,6 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
-
-
     const markers = JSON.parse(mapElement.dataset.markers);
     if(markers) {
       markers.forEach((marker) => {
@@ -48,26 +46,23 @@ const initMapbox = () => {
 
     var geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
-      // mapboxgl: mapboxgl
+    })
+
+    geocoder.on('results', function(results) {
+      console.log(results);
+      const coor = results.features[0].center
+      const lat = coor[0]
+      const long = coor[1]
+
+      marker.setLngLat(coor).addTo(map)
     })
 
     map.addControl(geocoder);
 
-    geocoder.on('results', function(results) {
-      console.log(results);
-      // marker.setLngLat(results)
-      map.flyTo({
-        // Pass result and custom animation
-      });
-    })
-    // var geocoder = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken,
-    //   marker: {
-    //   color: 'orange'
-    //   },
-    //   mapboxgl: mapboxgl
-    // });
-    // map.addControl(geocoder);
+    map.on('click', function(e) {
+      marker.setLngLat(e.lngLat).addTo(map)
+      onDragEnd();
+    });
 
     function onDragEnd() {
       var lngLat = marker.getLngLat();
