@@ -4,13 +4,13 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/doe2rb42f/image/upload/v1556114302/skater_tbmtg7.png);  background-position: center center; background-repeat: no-repeat; background-size: cover;">
   <div class="container d-flex">
     <div>
-    <h1>SKATE THE <strong>WORLD</strong></h1>
-    <div class="d-flex align-items-center">
-    <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATE</strong> A SPOT</h2>
-      <%= link_to "/spots/new", class: "navbar-brand" do %>
-    <i style="margin-left: 8px" class="add-icon fas fa-plus"></i>
-    <% end %>
-    </div>
+      <h1>SKATE THE <strong>WORLD</strong></h1>
+      <div class="d-flex align-items-center">
+        <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATE</strong> A SPOT</h2>
+          <%= link_to "/spots/new", class: "navbar-brand" do %>
+        <i style="margin-left: 8px" class="add-icon fas fa-plus"></i>
+        <% end %>
+      </div>
     </div>
     <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556021369/skateit_ymnmqb.svg', height: 40, width: 100, crop: :fill, class: "logo"  %>
   </div>
@@ -19,7 +19,7 @@
   <h3 style="color: #898989">Ledge Spots</h3>
   <div class="cards">
    <% @ledge_spots.each do |spot| %>
-      <%= render 'shared/small-card', :spot => spot %> 
+      <%= link_to (render 'shared/small-card', :spot => spot), spot_path(spot.id) %>
      <% end %>
   </div>
 <hr>
@@ -27,8 +27,8 @@
    <h3 style="color: #898989" >Rail Spots</h3>
 <div class="cards">
    <% @rail_spots.each do |spot| %>
-  
-      <%= render 'shared/small-card', :spot => spot %> 
+
+      <%= link_to (render 'shared/small-card', :spot => spot), spot_path(spot.id) %>
 
      <% end %>
   </div>
@@ -38,7 +38,7 @@
   <div class="cards">
    <% @spots.each do |spot| %>
 
-      <%= render 'shared/small-card', :spot => spot %> 
+      <%= link_to (render 'shared/small-card', :spot => spot), spot_path(spot.id) %>
 
      <% end %>
   </div>
