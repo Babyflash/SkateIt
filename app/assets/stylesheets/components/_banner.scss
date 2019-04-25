@@ -5,15 +5,24 @@
   position: relative;
   margin-top: 16px;
   transition: 0.2s ease;
+}
+.banner h1 {
+  font-family: Helvetica Neue;
+  font-weight: normal !important;
+  font-size: 75px;
+  margin-bottom: 0;
+}
+.banner h2{
+  font-weight: lighter !important;
+  font-size: 45px !important;
+  font-family: Helvetica Neue;
 
 }
-
 
 .banner h1, h2 {
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
+
 }
 
 .banner p {
@@ -29,5 +38,6 @@
   bottom: 0;
   margin-bottom: 20px;
 }
+
 
 

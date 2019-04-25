@@ -4,12 +4,14 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/doe2rb42f/image/upload/v1556114302/skater_tbmtg7.png);  background-position: center center; background-repeat: no-repeat; background-size: cover;">
   <div class="container d-flex">
     <div>
-    <h1>SKATE THE <strong>WORLD</strong></h1>
+    <h1>SKATE THE WORLD</h1>
     <div class="d-flex align-items-center">
-    <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATE</strong> A SPOT</h2>
+    <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATING SPOTS</h2>
       <%= link_to "/spots/new", class: "navbar-brand" do %>
-    <i style="margin-left: 8px" class="add-icon fas fa-plus"></i>
     <% end %>
+    </div>
+    <div class="btn-medium-container">
+    <a href="/spots/new" class="btn-medium">Create Spot</a>
     </div>
     </div>
     <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556021369/skateit_ymnmqb.svg', height: 40, width: 100, crop: :fill, class: "logo"  %>
