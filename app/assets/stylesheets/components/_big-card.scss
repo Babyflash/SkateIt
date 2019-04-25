@@ -20,6 +20,11 @@
   max-height: 60vh;
 }
 
+.img-cont img{
+  width: 100%;
+  object-fit: contain;
+}
+
 .card-product h2 {
   font-size: 16px;
   font-weight: bold;
