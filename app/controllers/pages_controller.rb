@@ -5,5 +5,6 @@ class PagesController < ApplicationController
     @spots = Spot.all
     @ledge_spots = Spot.where(:spot_type => 'Ledge').order(created_at: :desc);
     @rail_spots = Spot.where(:spot_type => 'Rail').order(created_at: :desc);
+    @stair_spots = Spot.where(:spot_type => 'Stair set').order(created_at: :desc);
   end
 end

@@ -27,7 +27,7 @@ class SpotsController < ApplicationController
 
       if params[:query].present?
          sql_query = "spot_type ILIKE :query"
-        @spots = policy_scope(Spot).where(sql_query, query: "%#{params[:query]}%")
+        @spots = policy_scope(Spot).where(sql_query, query: "%#{params[:query]}%").order(created_at: :desc)
       else
         @spots = policy_scope(Spot).order(created_at: :desc)
       end
