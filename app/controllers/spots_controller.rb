@@ -23,7 +23,6 @@ class SpotsController < ApplicationController
     # --- Read
 
     def index
-    
       @allSpots = policy_scope(Spot).order(created_at: :desc)
 
       if params[:query].present?
@@ -32,13 +31,11 @@ class SpotsController < ApplicationController
       else
         @spots = policy_scope(Spot).order(created_at: :desc)
       end
-    
+
       @markers = @spots.map do |spot|
         {
           lat: spot.geo_lat,
           lng: spot.geo_lng,
-          # lat: 47.9180385,
-          # lng: 106.9136493,
 
           infoWindow: { content: render_to_string(partial: "/spots/map_window", locals: { spot: spot }) },
           image_url: helpers.asset_url('https://www.topdraw.com/assets/uploads/2016/05/66255487_thumbnail-591x640.png')
@@ -75,7 +72,7 @@ class SpotsController < ApplicationController
     end
 
     def spot_params
-        params.require(:spot).permit(:spot_type, :difficulty_rating, :default_image, :geo_lng, :geo_lat, :query)
+        params.require(:spot).permit(:spot_type, :difficulty_rating, :default_image, :geo_lng, :geo_lat, :query, :address)
     end
 
     def type(num)

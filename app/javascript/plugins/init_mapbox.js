@@ -51,6 +51,7 @@ function loadDraggableMarker(map) {
   .addTo(map);
 
   marker.on('dragend', function() {
+    // console.log(marker);
     setMarkerLngLat(marker);
   });
 
@@ -60,12 +61,18 @@ function loadDraggableMarker(map) {
 
   map.addControl(geocoder);
 
-  geocoder.on('results', function(results) {
-    const coor = results.features[0].center
+  geocoder.on('result', function (e) {
+    console.log(e.result);
 
+    const coor = e.result.center
     marker.setLngLat(coor).addTo(map)
     setMarkerLngLat(marker);
-  })
+
+    const elAddress = document.getElementById('flat_address');
+    if(elAddress) {
+      elAddress.value = e.result.place_name;
+    }
+  });
 
   map.on('click', function(e) {
     marker.setLngLat(e.lngLat).addTo(map)

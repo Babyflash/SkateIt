@@ -5,7 +5,8 @@
     </div>
     <%end%>
     <div class="card-product-infos">
-        <p>Address: <%= spot.geo_lat%> <%= spot.geo_lng%></p>
+         <p>Address: <%= spot.geo_lat%> <%= spot.geo_lng%></p>
+         <p>Address: <%= spot.address %></p>
          <p>Type: <%= spot.spot_type %></p>
          <p>Comments: <%= spot.posts.count %></p>
     </div>

@@ -18,11 +18,6 @@
         <%= f.input :default_image, label: false, class: "btn btn-outline-dark" %>
         <%= f.input :default_image_cache, as: :hidden %>
 
-        <%= simple_fields_for :no_model_fields do |n| %>
-          <%= n.input :address, as: :hidden %>
-          <!-- , id: "flat_address" -->
-        <% end %>
-
         <div
           id="map"
           style="width: 100%;
@@ -32,8 +27,11 @@
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
 
-        <%= f.input :geo_lat, class: "geo-lat" %>
-        <%= f.input :geo_lng, class: "geo-lng" %>
+        <%= f.input :address, as: :text, :input_html => { :id => 'flat_address' } %>
+
+
+        <%= f.input :geo_lat, as: :hidden, class: "geo-lat" %>
+        <%= f.input :geo_lng, as: :hidden, class: "geo-lng" %>
 
         <pre id='coordinates' class='coordinates'></pre>
         <br>
