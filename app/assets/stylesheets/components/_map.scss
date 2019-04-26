@@ -3,17 +3,24 @@
 }
 
 .mapboxgl-popup {
-  max-width: 200px;
-
+  // max-width: 200px;
  }
 
 .mapboxgl-popup-content {
-  background: #00b7a8 !important;
-  // #00b7a8
-  // #fd5f00 orange
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  color: white;
+  padding: 1px !important;
+  // background: #00b7a8 !important;
+  // // #00b7a8
+  // // #fd5f00 orange
+  // text-align: center;
+  // font-family: 'Open Sans', sans-serif;
+  // color: white;
+}
+
+.mapboxgl-popup-close-button {
+  margin-top: 6px;
+  margin-right: 10px;
+  font-size: 20px;
+  color: red;
 }
 
 .coordinates {
