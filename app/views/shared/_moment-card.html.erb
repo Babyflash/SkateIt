@@ -1,11 +1,11 @@
-<div class="card-product m-3" style="border-radius: 16px;">
+<div class="card-product" style="border-radius: 16px; margin: 16px 0">
      <% if data[:img].first.nil? %>
      <% else %>
      <div style="height: 200px; width: 300px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path data[:img].first.media_url, :crop => :pad  %>');  background-position: center center; background-repeat: no-repeat; background-size: cover;">
     </div>
      <%end%>
- 
+
     <div class="card-product-infos">
         <p><%=data[:des]%></p>
     </div>
