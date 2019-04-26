@@ -1,71 +1,73 @@
-<div class="Container">
-  <div class="Content">
-    <div class="Wrapper">
-      <div class="RightContent m-3" id="map" data-spot = "<%= @spot.to_json %>" data-view-type="spot" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
-
-      </div>
-
-      <div class="LeftContent">
-        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="margin-top: 16px; margin-left: 16px;">
-          <div class="carousel-inner">
-          <%# -------- items --------- %>
-            <div class="carousel-item active" data-interval="10000">
-              <%= cl_image_tag @spot.default_image  %>
-            </div>
-            <% @posts.each do |post| %>
-            <% imgs = PostContent.where(post_id: post.id) %>
-            <% img_array = [] %>
-            <% imgs.each do |img| %>
-            <div class="carousel-item" data-interval="2000">
-
-              <%= cl_image_tag img.media_url %>
-            </div>
-            <%end %>
-            <% end %>
+<div class="container" style="width: 100%;">
+  <div class="row" style="margin: 0 auto; width: 100%; padding: 0;">
+    
+    <div class="col-sm carousel slide" id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="margin-top: 16px;">
+      <div class="carousel-inner">
+        <%# -------- items --------- %>
+        <div class="carousel-item active" data-interval="10000">
+          <%= cl_image_tag @spot.default_image  %>
         </div>
-        <%# --------buttons-------- %>
-        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-           <span class="sr-only">Next</span>
-        </a>
-</div>
-
-<div class="container">
-<div style="margin-top: 16px; margin-left: 16 !important; width: 100%; box-shadow:3px 3px 5px 6px #ccc; border-radius: 10px; padding: 20px; background-color: white;">
-<%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
-  <%= simple_fields_for :no_model_fields do |n| %>
-    <%= n.input :comment %>
-    <%= n.file_field :pictures, multiple: true %>
-  <% end %>
-
-  <%= f.submit "Save", class: "btn btn-primary" %>
-<% end %>
-</div>
-</div>
-
         <% @posts.each do |post| %>
-                  <% imgs = PostContent.where(post_id: post.id) %>
-                  <% img_array = [] %>
-                  <% imgs.each do |img| %>
-                        <% img_array << img %>
-                    <%end %>
-                    <% data_hash = {post: post, img: img_array, des: post.description}%>
-
-                    <%= render 'shared/moment-card', :data => data_hash%>
-                    
-        <% end %>
-
-
-
-      </div>
+          <% imgs = PostContent.where(post_id: post.id) %>
+          <% img_array = [] %>
+          <% imgs.each do |img| %>
+        <div class="carousel-item" data-interval="2000">
+            <%= cl_image_tag img.media_url %>
+        </div>
+            <%end %>
+          <% end %>
+            </div>
+      <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+    
+     
+
+    <%# ---------map-------------- %>
+    <div class="col-sm" style="padding: 0; border-radius: 8px !important; overflow-x: hidden !important; margin-top: 16px; width: 100%; min-height: 30vh; height: auto;"id="map" data-spot = "<%= @spot.to_json %>" data-view-type="spot" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
   </div>
 </div>
+ 
+
+
+<div class="container">
+  <div style="margin-top: 16px; margin-left: 16 !important; width: 100%; box-shadow:3px 3px 5px 6px #ccc; border-radius: 10px; padding: 20px; background-color: white;">
+    <%= simple_form_for :post, html: { multipart: true },  url: spot_posts_path(@spot.id) do |f| %>
+      <%= simple_fields_for :no_model_fields do |n| %>
+        <%= n.input :comment %>
+        <%= n.file_field :pictures, multiple: true %>
+      <% end %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
+
+</div>
+
+<% @posts.each do |post| %>
+  <% imgs = PostContent.where(post_id: post.id) %>
+  <% img_array = [] %>
+  <% imgs.each do |img| %>
+    <% img_array << img %>
+  <%end %>
+  <% data_hash = {post: post, img: img_array, des: post.description}%>
+  <%= render 'shared/moment-card', :data => data_hash%>
+<% end %>
+
+
+
+ 
+
+
 
 
 
