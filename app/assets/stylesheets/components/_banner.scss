@@ -49,4 +49,10 @@
 }
 
 
+@media (max-width: 720px) {
+  /* For a screen < 720px, this CSS will be read */
+  .container {
+    width: 100%;
+  }
+}
 
