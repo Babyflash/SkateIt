@@ -1,2 +1,11 @@
-<h3><%= "Ledge" %></h3>
-<p><%= "Come here Dude..." %></p>
+<div class="map-popup">
+  <%= cl_image_tag(spot.default_image, :crop => :fill) %>
+  <div class="map-popup-infos">
+    <h2><%= spot.spot_type %></h2>
+    <p><%= spot.address %></p>
+  </div>
+</div>
+<!--
+<h3><%= spot.spot_type %></h3>
+<p><%= spot.address %></p>
+<p><%= spot.spot_type %></p> -->
