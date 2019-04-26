@@ -37,6 +37,17 @@
       <%=link_to "rails", :controller => "spots", :query => "rail"%>
     </div>
   <hr>
+  <h3 style="color: #898989" >Stairs</h3>
+    <div class="cards">
+      <% @stair_spots[0..2].each do |spot| %>
+        <%= render 'shared/small-card', :spot => spot %>
+      <% end %>
+    </div>
+    <div style="margin-top: 6px;">
+      <span style="color: #898989" > We found (<%=@stair_spots.count%>)</span>
+      <%=link_to "stairs", :controller => "spots", :query => "stair"%>
+    </div>
+  <hr>
     <h3 style="color: #898989" >Spots</h3>
     <div class="cards">
       <% @spots[0..2].each do |spot| %>
