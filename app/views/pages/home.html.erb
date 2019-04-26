@@ -1,15 +1,15 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/doe2rb42f/image/upload/v1556114302/skater_tbmtg7.png);  background-position: center center; background-repeat: no-repeat; background-size: cover;">
   <div class="container d-flex">
     <div>
-    <h1>SKATE THE WORLD</h1>
-    <div class="d-flex align-items-center">
-    <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATING SPOTS</h2>
-      <%= link_to "/spots/new", class: "navbar-brand" do %>
-    <% end %>
-    </div>
-    <div class="btn-medium-container">
-    <a href="/spots/new" class="btn-medium">Create Spot</a>
-    </div>
+      <h1>SKATE THE WORLD</h1>
+      <div class="d-flex align-items-center">
+        <h2 style="font-size: 25px; margin-bottom: 0 !important;" ><strong>CREATING SPOTS</h2>
+        <%= link_to "/spots/new", class: "navbar-brand" do %>
+        <% end %>
+      </div>
+      <div class="btn-medium-container">
+        <a href="/spots/new" class="btn-medium">Create Spot</a>
+      </div>
     </div>
     <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556021369/skateit_ymnmqb.svg', height: 40, width: 100, crop: :fill, class: "logo"  %>
   </div>
@@ -17,37 +17,34 @@
 <div class="container" style="margin-top: 16px;">
   <h3 style="color: #898989">Ledges</h3>
   <div class="cards">
-   <% @ledge_spots[0..2].each do |spot| %>      
-      <%= render 'shared/small-card', :spot => spot %> 
-     <% end %>
-  </div>
-  <div style="margin-top: 6px;">
-  <%=link_to "all ledges", :controller => "spots", :query => "ledge"%> <span style="color: #898989"> (<%=@ledge_spots.count%>)</span>
-  </div>
-<hr>
-
-   <h3 style="color: #898989" >Rails</h3>
-<div class="cards">
-   <% @rail_spots[0..2].each do |spot| %>
-  
-      <%= render 'shared/small-card', :spot => spot %> 
-
-     <% end %>
-  </div>
-    <div style="margin-top: 6px;">
-  <%=link_to "all rails", :controller => "spots", :query => "rail"%><span style="color: #898989"> (<%=@rail_spots.count%>)</span>
-  </div>
-<hr>
-
-   <h3 style="color: #898989" >All spots</h3>
-  <div class="cards">
-   <% @spots[0..2].each do |spot| %>
-
+    <% @ledge_spots[0..2].each do |spot| %>
       <%= render 'shared/small-card', :spot => spot %>
-
-     <% end %>
+    <% end %>
   </div>
   <div style="margin-top: 6px;">
-  <%=link_to "all spots", :controller => "spots"%> <span style="color: #898989"> (<%=@spots.count%>)</span>
+    <span style="color: #898989" > We found (<%=@ledge_spots.count%>)</span>
+    <%=link_to "ledges", :controller => "spots", :query => "ledge"%>
   </div>
+  <hr>
+    <h3 style="color: #898989" >Rails</h3>
+    <div class="cards">
+      <% @rail_spots[0..2].each do |spot| %>
+        <%= render 'shared/small-card', :spot => spot %>
+      <% end %>
+    </div>
+    <div style="margin-top: 6px;">
+      <span style="color: #898989" > We found (<%=@rail_spots.count%>)</span>
+      <%=link_to "rails", :controller => "spots", :query => "rail"%>
+    </div>
+  <hr>
+    <h3 style="color: #898989" >Spots</h3>
+    <div class="cards">
+      <% @spots[0..2].each do |spot| %>
+        <%= render 'shared/small-card', :spot => spot %>
+      <% end %>
+    </div>
+    <div style="margin-top: 6px;">
+      <span style="color: #898989"> We found (<%=@spots.count%>)</span>
+      <%=link_to "spots", :controller => "spots"%>
+    </div>
 </div>
