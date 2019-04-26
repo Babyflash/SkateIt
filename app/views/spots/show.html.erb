@@ -49,10 +49,6 @@
     <% end %>
   </div>
 
-
-
-</div>
-
 <% @posts.each do |post| %>
   <% imgs = PostContent.where(post_id: post.id) %>
   <% img_array = [] %>
@@ -62,6 +58,10 @@
   <% data_hash = {post: post, img: img_array, des: post.description}%>
   <%= render 'shared/moment-card', :data => data_hash%>
 <% end %>
+
+
+</div>
+
 
 
 
