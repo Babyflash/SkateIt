@@ -3,7 +3,7 @@
   background-position: center;
   padding: 150px 0;
   position: relative;
-  margin-top: 16px;
+  margin-top: 0px;
   transition: 0.2s ease;
 }
 .banner h1 {
@@ -49,4 +49,10 @@
 }
 
 
+@media (max-width: 720px) {
+  /* For a screen < 720px, this CSS will be read */
+  .container {
+    width: 100%;
+  }
+}
 
