@@ -12,8 +12,10 @@
 
 .add-icon {
   color: #094272;
-  border: 1px solid black;
   padding: 6px;
+  padding-top:8px;
+  padding-left:9px;
+  padding-right:9px;
   border-radius: 50%;
   font-size: 22px;
   transition: 0.2s ease;
@@ -25,3 +27,12 @@
   border-color: #FFFFFF;
 }
 
+.add-skate-button {
+  height:calc(1.5em + 0.75rem + 2px); background-color: #45A9E6;
+  transition: all 3s ease-in-out;
+}
+
+.add-skate-button:hover {
+  background-color: #094272 !important;
+  transition: all 1s ease-in-out;
+}

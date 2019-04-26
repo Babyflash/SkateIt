@@ -1,31 +1,38 @@
 <div style="height: 60px;" class="navbar navbar-expand-sm navbar-light navbar-lewagon d-flex justify-content-between align-items-center">
-  
+
   <div class="d-flex justify-content-between align-items-center">
   <%= link_to "/", class: "navbar-brand" do %>
      <%= cl_image_tag 'https://res.cloudinary.com/doe2rb42f/image/upload/v1556116874/skateit-logo_pb3rke.png', width: 100 %>
     <% end %>
-    
-    <div class="icon-container">
- <%= link_to "/spots/new", class: "navbar-brand" do %>
-    <i class="add-icon fas fa-plus"></i>
-    <% end %>
-    </div>
 
-   
-  </div>
 
-   <%= form_tag spots_path, method: :get do |f| %>
-  <div class="search-form-control form-group m-3 d-flex align-items-center">
-    <%= text_field_tag :query,
-        params[:query],
-        class: "form-control string required search-form-control",
-        placeholder: "Find a spot"
-    %>
-    <button name="button" type="submit" class="btn btn-flat">
-      <i style="" class="search-icon fas fa-search"></i>
-    </button>
+
+
   </div>
-  <% end %>
+  <div>
+
+
+
+      <%= form_tag spots_path, method: :get do |f| %>
+      <div class="search-form-control form-group m-3 d-flex align-items-center">
+        <div class='add-skate-button'>
+          <div >
+            <%= link_to "/spots/new", class: "" do %>
+              <i class="add-icon fas fa-plus" style="color:white;"></i>
+            <% end %>
+          </div>
+        </div>
+        <%= text_field_tag :query,
+            params[:query],
+            class: "form-control string required search-form-control",
+            placeholder: "Find a spot"
+        %>
+        <button name="button" type="submit" class="btn btn-flat">
+          <i style="" class="search-icon fas fa-search"></i>
+        </button>
+      </div>
+      <% end %>
+  </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,7 +42,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-         
+
         </li>
         <li class="nav-item">
           <%= link_to "", "#", class: "nav-link" %>
@@ -54,8 +61,8 @@
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-        
-  
+
+
     </ul>
   </div>
 </div>
