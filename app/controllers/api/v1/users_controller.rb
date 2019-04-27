@@ -1,10 +1,17 @@
 class Api::V1::UsersController < Api::V1::BaseController
+  respond_to :json
+  acts_as_token_authentication_handler_for User, except: [:create]
+  skip_before_action :verify_authenticity_token
+
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
 
   def create
     @user = User.find_by(email: wechat_email) || User.create(user_params)
 
-    render json: @user if @user.persisted?
+      # render json: @user if @user.persisted?
+    render json: {
+      "done": @user
+    }
   end
 
   private
@@ -33,7 +40,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    return @user_params if @user_params
+    # return @user_params if @user_params
 
     @user_params = set_params
 
@@ -51,6 +58,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def wechat_email
     @wechat_email ||= wechat_user.fetch('openid') + "@skateit.com"
     @wechat_email.downcase!
+    return @wechat_email
   end
 
   def set_params
