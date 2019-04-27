@@ -25,6 +25,10 @@ gem 'carrierwave', '~> 1.2'
 gem 'geocoder'
 gem 'pg_search'
 
+gem "simple_token_authentication"
+gem 'rest-client'
+
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
