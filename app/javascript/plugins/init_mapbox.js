@@ -117,34 +117,28 @@ const initMapbox = () => {
       case 'spot': loadSinglePostMap(map, mapElement); break;
     }
 
-    // var marker = new mapboxgl.Marker({
-    //     draggable: true
-    //   })
-    //   .setLngLat([0, 0])
-    //   .addTo(map);
+    function setActiveChapter(chapterName) {
+      if (chapterName === activeChapterName)
+        return;
 
-    // var geocoder = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken,
-    // })
+      document.getElementById(chapterName).setAttribute('class', 'active');
+      document.getElementById(activeChapterName).setAttribute('class', '');
 
-    // geocoder.on('results', function(results) {
-    //   console.log(results);
-    //   const coor = results.features[0].center
-    //   const lat = coor[0]
-    //   const long = coor[1]
+      activeChapterName = chapterName;
+    }
+    // function isElementOnScreen(id) {
+    //   var element = document.getElementById(id);
+    //   var bounds = element.getBoundingClientRect();
+    //   return bounds.top < window.innerHeight && bounds.bottom > 0;
+    // }
 
-    //   marker.setLngLat(coor).addTo(map)
-    // })
+    window.addEventListener('scroll', function(){
+      const card = document.querySelector('.card-product-infos');
+      if(card){
 
-    // map.addControl(geocoder);
+      }
 
-    // map.on('click', function(e) {
-    //   marker.setLngLat(e.lngLat).addTo(map)
-    //   setMarkerLngLat(marker);
-    // });
-
-
-    // marker.on('dragend', setMarkerLngLat(marker));
+    }, true)
   }
 };
 

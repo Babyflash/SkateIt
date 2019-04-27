@@ -21,4 +21,13 @@ Rails.application.routes.draw do
 
   # --- Posts
   post '/spots/:spot_id/posts', to: 'posts#create', as: :spot_posts
+
+  # --- Api
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :users, only: [ :update, :create ]
+      resources :spots, only: [ :index, :show, :update, :create, :destroy ]
+    end
+  end
+
 end
