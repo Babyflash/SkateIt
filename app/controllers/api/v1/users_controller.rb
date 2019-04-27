@@ -8,25 +8,13 @@ class Api::V1::UsersController < Api::V1::BaseController
   def create
     @user = User.find_by(email: wechat_email) || User.create(user_params)
 
-      # render json: @user if @user.persisted?
-    render json: {
-      "done": @user
-    }
+    render json: @user if @user.persisted?
   end
 
   private
 
   def wechat_user
-    p "RestClient - Request to Wechat Server - by this params"
-    p wechat_params
-
     @wechat_response ||= RestClient.post(URL, wechat_params)
-
-    p "Response from Server"
-    p @wechat_response
-    p "Response body"
-    p @wechat_response.body
-
     @wechat_user ||= JSON.parse(@wechat_response.body)
   end
 
@@ -48,9 +36,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user_params['email'] = wechat_email
     @user_params['password'] = wechat_user.fetch('session_key', Devise.friendly_token)
     @user_params['authentication_token'] = Devise.friendly_token
-
-    p "user params:"
-    p @user_params
 
     @user_params
   end
