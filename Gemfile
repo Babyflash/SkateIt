@@ -26,7 +26,7 @@ gem 'geocoder'
 gem 'pg_search'
 
 gem "simple_token_authentication"
-
+gem 'jbuilder', '~> 2.0'
 
 
 
