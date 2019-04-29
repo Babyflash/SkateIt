@@ -6,8 +6,10 @@ class Api::V1::UsersController < Api::V1::BaseController
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
 
   def create
+    
     @user = User.find_by(email: wechat_email) || User.create(user_params)
-
+    p '-------------------------USer----------------------'
+    p @user
     render json: @user if @user.persisted?
   end
 
