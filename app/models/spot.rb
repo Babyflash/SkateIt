@@ -1,4 +1,6 @@
 class Spot < ApplicationRecord
+  acts_as_token_authenticatable
+
   belongs_to :user
   has_many :checkins
   has_many :locations
