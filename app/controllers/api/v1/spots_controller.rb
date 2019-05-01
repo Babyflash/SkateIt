@@ -1,7 +1,8 @@
 class Api::V1::SpotsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for Spot, except: [ :index, :create ]
+  # acts_as_token_authentication_handler_for Spot, except: [ :index, :create ]
+  # before_action :authenticate_user!
   # protect_from_forgery with: :exception
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   respond_to :json
 
