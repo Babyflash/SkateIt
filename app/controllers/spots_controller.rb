@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
     before_action :load, only: [:show, :update, :edit, :destroy]
-
+    # acts_as_token_authentication_handler_for User, except: [:index, :new, :create,]
     # --- Create
 
     def new
@@ -11,6 +11,8 @@ class SpotsController < ApplicationController
     def create
       @spot = current_user.spots.new(spot_params)
       @spot.spot_type = type(@spot.spot_type)
+      p @spot.default_image
+      @spot.default_image = @spot.default_image.gsub('http://','https://')
       authorize @spot
 
       if @spot.save
@@ -72,7 +74,7 @@ class SpotsController < ApplicationController
     end
 
     def spot_params
-        params.require(:spot).permit(:spot_type, :difficulty_rating, :default_image, :geo_lng, :geo_lat, :query, :address)
+        params.require(:spot).permit(:spot_type, :difficulty_rating, :default_image, :geo_lng, :geo_lat, :query, :address, :authenticity_token)
     end
 
     def type(num)
