@@ -3,10 +3,10 @@ class Api::V1::UsersController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [:create]
   skip_before_action :verify_authenticity_token
 
+
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
 
   def create
-    
     @user = User.find_by(email: wechat_email) || User.create(user_params)
     p '-------------------------USer----------------------'
     p @user
@@ -30,7 +30,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    # return @user_params if @user_params
+    return @user_params if @user_params
 
     @user_params = set_params
 
@@ -38,7 +38,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user_params['email'] = wechat_email
     @user_params['password'] = wechat_user.fetch('session_key', Devise.friendly_token)
     @user_params['authentication_token'] = Devise.friendly_token
-
     @user_params
   end
 

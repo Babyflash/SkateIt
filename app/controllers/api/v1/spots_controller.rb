@@ -1,8 +1,9 @@
 class Api::V1::SpotsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for Spot, except: [ :index, :create ]
+  acts_as_token_authentication_handler_for User, except: [:index]
+  acts_as_token_authentication_handler_for Spot, except: [:index, :create]
   # protect_from_forgery with: :exception
-  skip_before_action :verify_authenticity_token
-
+  protect_from_forgery prepend: true
+  # skip_before_action :verify_authenticity_token
   respond_to :json
 
   def index
@@ -20,6 +21,11 @@ class Api::V1::SpotsController < Api::V1::BaseController
   def create
     p "Starting--------------"
     @spot = Spot.new(set_params)
+    p params[:default_image]
+    @spot.default_image = 'http://lc-j4J9R8FV.cn-n1.lcfile.com/88c88f5dd8ca2d79a41c'
+    @spot.remote_default_image_url = params[:remote_default_image_url]
+    p @spot.default_image
+    # @spot.default_image = @spot.default_image.gsub('http://', 'https://')
     p "Saved---------------------------------"
     if @spot.save
       p "SUCESS---------------------------------"
@@ -37,6 +43,6 @@ class Api::V1::SpotsController < Api::V1::BaseController
   def set_params
     params.require(:spot).permit(:name, :avatar_url, :gender, :province, :city, :spot_rating,
                                  :difficulty_rating, :spot_type, :default_image, :user_id,
-                                 :geo_lat, :geo_lng, :address)
+                                 :geo_lat, :geo_lng, :address, :authentication_token, :remote_default_image_url)
   end
 end
