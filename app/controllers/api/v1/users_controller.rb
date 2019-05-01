@@ -22,8 +22,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def wechat_params
     {
-      appid: "wx75eca27293884352",
-      secret: "dcb3e33d58a4ecf7d2223830f2f2a60e",
+      appid: ENV["APPID"],
+      secret: ENV["SECRET"],
       js_code: params[:code],
       grant_type: "authorization_code"
     }
