@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users, only: [ :update, :create ]
-      resources :spots, only: [ :index, :show, :update, :create, :destroy ]
+      resources :spots, only: [ :index, :show, :update, :create, :destroy ] do
+        resources :posts, only: [:index, :create]
+      end
     end
   end
 
