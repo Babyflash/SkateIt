@@ -1,7 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, except: [:index]
-
   protect_from_forgery prepend: true
+
+  acts_as_token_authentication_handler_for User, except: [:index]
 
   respond_to :json
 
@@ -12,6 +12,12 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def create
     @post = Post.new(set_params)
+
+    images = params[:content]
+    images.each do |img|
+      @post.post_contents.build(media_url: img, remote_media_url_url: img)
+    end
+
     if @post.save
       render json: @post if @post.persisted?
     else
