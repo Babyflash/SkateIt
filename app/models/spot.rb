@@ -13,7 +13,7 @@ class Spot < ApplicationRecord
 
 
   mount_uploader :default_image, PhotoUploader
-  attr_accessor :default_image
+  # attr_accessor :default_image
 
   include PgSearch
 
