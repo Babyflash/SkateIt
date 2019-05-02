@@ -11,8 +11,7 @@ class SpotsController < ApplicationController
     def create
       @spot = current_user.spots.new(spot_params)
       @spot.spot_type = type(@spot.spot_type)
-      p @spot.default_image
-      @spot.default_image = @spot.default_image.gsub('http://','https://')
+
       authorize @spot
 
       if @spot.save

@@ -3,7 +3,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [:create]
   skip_before_action :verify_authenticity_token
 
-
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
 
   def create
