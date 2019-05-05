@@ -7,7 +7,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def index
     @posts = Post.where("spot_id = ?", params[:spot_id]).order('created_at DESC')
-    render json: @posts
+    render json: @posts.to_json(:include => [:post_contents, :user])
   end
 
   def create
