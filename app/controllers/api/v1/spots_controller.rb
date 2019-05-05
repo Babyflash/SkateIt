@@ -15,7 +15,7 @@ class Api::V1::SpotsController < Api::V1::BaseController
       @all_spots[type] = Spot.where(:spot_type => type).order(created_at: :desc)
     end
 
-    render json: @all_spots
+    render json: @all_spots.to_json(:include => :user)
   end
 
   def create
