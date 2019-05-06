@@ -15,7 +15,7 @@ class Api::V1::SpotsController < Api::V1::BaseController
       @all_spots[type] = Spot.where(:spot_type => type).order(created_at: :desc)
     end
 
-    render json: @all_spots
+    render json: @all_spots.to_json(:include => :user)
   end
 
   def create
@@ -26,10 +26,11 @@ class Api::V1::SpotsController < Api::V1::BaseController
     @spot.remote_default_image_url = params[:remote_default_image_url]
     p @spot.default_image
     # @spot.default_image = @spot.default_image.gsub('http://', 'https://')
-    p "Saved---------------------------------"
+    p "Starting--------------"
     if @spot.save
       p "SUCESS---------------------------------"
       render json: @spot if @spot.persisted?
+      p @spot
     else
       render_error
     end
