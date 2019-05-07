@@ -1,6 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
   respond_to :json
   protect_from_forgery prepend: true
+  # protect_from_forgery with: :null_session
   acts_as_token_authentication_handler_for User, except: [:create]
   skip_before_action :verify_authenticity_token, except: [:favorites, :profile]
 
