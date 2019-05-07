@@ -26,7 +26,14 @@ Rails.application.routes.draw do
   # --- Api
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, only: [ :update, :create ]
+      resources :users, only: [ :update, :create ] do
+        collection do
+          post 'favorites'
+        end
+        collection do
+          get 'profile'
+        end
+      end
       resources :spots, only: [ :index, :show, :update, :create, :destroy ] do
         resources :posts, only: [:index, :create]
       end
