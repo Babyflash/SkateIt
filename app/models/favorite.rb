@@ -1,4 +1,4 @@
 class Favorite < ApplicationRecord
   belongs_to :user
-  validates_uniqueness_of :user_id, :spot_id
+  validates_uniqueness_of :spot_id
 end
