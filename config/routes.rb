@@ -35,6 +35,9 @@ Rails.application.routes.draw do
         end
       end
       resources :spots, only: [ :index, :show, :update, :create, :destroy ] do
+        collection do
+          get 'favorites'
+        end
         resources :posts, only: [:index, :create]
       end
     end
