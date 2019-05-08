@@ -1,6 +1,6 @@
 class Api::V1::SpotsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, except: [:index]
-  acts_as_token_authentication_handler_for Spot, except: [:index, :create]
+  acts_as_token_authentication_handler_for User, except: [:index, :favorites]
+  acts_as_token_authentication_handler_for Spot, except: [:index, :create, :favorites]
   # protect_from_forgery with: :exception
   protect_from_forgery prepend: true
   # skip_before_action :verify_authenticity_token
@@ -34,6 +34,11 @@ class Api::V1::SpotsController < Api::V1::BaseController
     else
       render_error
     end
+  end
+
+  def favorites
+    fav_count = Favorite.where(spot_id: params[:spotId]).count
+    render json: { favCount: fav_count }
   end
 
   def render_error
