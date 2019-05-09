@@ -41,7 +41,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       spots = Spot.where(id: spot_ids.to_a)
     end
 
-    render json: spots
+    render json: spots.to_json(:include => :user)
   end
 
   private
